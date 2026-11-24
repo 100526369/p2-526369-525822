@@ -20,12 +20,12 @@ constexpr double PI = 3.14159265358979323846;
 class AirportState {
 public:
     AirportState(
-        std::string_view code,
+        std::string_view IATA,
         double latitude,
         double longitude
     ): latitude_(latitude), longitude_(longitude)
     {
-        if (code.size() != 3) {
+        if (IATA.size() != 3) {
             throw std::invalid_argument(
                 "IATA must contain exactly 3 characters"
             );
@@ -35,7 +35,7 @@ public:
         // are consistent no matter where the code came from.
         for (std::size_t i = 0; i < 3; ++i) {
             IATA_[i] = static_cast<char>(
-                std::toupper(static_cast<unsigned char>(code[i]))
+                std::toupper(static_cast<unsigned char>(IATA[i]))
             );
         }
     }

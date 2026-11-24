@@ -22,7 +22,7 @@ public:
     // Adds an airport. If the IATA code already exists, it is overwritten.
     void add_airport(const AirportState& airport) {
         airports_.insert_or_assign(
-            std::string(airport.get_IATA()),
+            normalize(airport.get_IATA()),
             airport
         );
     }
