@@ -59,6 +59,10 @@ public:
         return IATA_ == other.IATA_;
     }
 
+    bool operator!=(const AirportState& other) const {
+        return !(*this == other);
+    }
+    
 private:
     std::array<char, 3> IATA_;
     double latitude_;
