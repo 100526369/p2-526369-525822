@@ -12,7 +12,6 @@
 #include <algorithm>
 
 
-
 namespace airport_search {
 
 constexpr double EARTH_RADIUS_KM = 6371.0;
@@ -62,7 +61,7 @@ public:
     bool operator!=(const AirportState& other) const {
         return !(*this == other);
     }
-    
+
 private:
     std::array<char, 3> IATA_;
     double latitude_;
