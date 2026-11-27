@@ -1,5 +1,5 @@
 CXX = c++
-CXXFLAGS = -O3 -Wall -std=c++17
+CXXFLAGS = -O3 -Wall -Wextra -std=c++17
 
 TARGET = sol-1
 SRC = main.cpp
