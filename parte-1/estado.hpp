@@ -87,7 +87,10 @@ inline double haversine(
     const double dlat = lat2 - lat1;
     const double dlon = lon2 - lon1;
 
-    const double arg = (std::sin(dlat / 2.0)*std::sin(dlat / 2.0)) + std::cos(lat1) * std::cos(lat2) * (std::sin(dlon / 2.0)*std::sin(dlon / 2.0));
+    const double sin_dlat = std::sin(dlat / 2.0);
+    const double sin_dlon = std::sin(dlon / 2.0);
+
+    const double arg = sin_dlat * sin_dlat + std::cos(lat1) * std::cos(lat2) * sin_dlon * sin_dlon;
 
     // Protect against floating-point rounding errors
     const double bounded_h = std::clamp(arg, 0.0, 1.0);
