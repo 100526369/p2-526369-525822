@@ -486,30 +486,8 @@ int main(int argc, char* argv[]) {
         const AirportState& origin = graph.get_airport(origin_code);
         const AirportState& destination = graph.get_airport(destination_code);
 
-        // Run both algorithms.
-        const SearchResult dijkstra_result = dijkstra(
-            graph, origin, destination
-        );
+        const SearchResult result = dijkstra(graph, origin, destination);
 
-        const SearchResult astar_result = a_star(
-            graph, origin, destination
-        );
-
-        // Both algorithms should find the same minimum distance.
-        // Their routes may differ if multiple optimal routes exist.
-        const double tolerance = 1e-6;
-
-        if (std::abs(dijkstra_result.distance - astar_result.distance)
-            > tolerance) {
-            throw std::runtime_error(
-                "Dijkstra and A* returned different shortest distances."
-            );
-        }
-
-        // A* is deliberately selected for the required output.
-        const SearchResult& result = astar_result;
-
-        // Open the output file only after both searches succeed.
         std::ofstream output(argv[2]);
 
         if (!output) {
